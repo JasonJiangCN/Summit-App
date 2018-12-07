@@ -3,8 +3,8 @@ import { Button } from 'react-bootstrap';
 import ClientListTypeahead from '../Shared/ClientListTypeahead.jsx';
 import DOB from '../Shared/DobInput.jsx';
 import { getClients, authUser } from './ClientAuthenticationVirtualController';
-
-
+import {Breadcrumb} from 'element-react';
+import {Link} from 'react-router-dom';
 class ClientAuthentication extends Component {
     constructor(props) {
         super(props)
@@ -31,7 +31,7 @@ class ClientAuthentication extends Component {
             clients: newClients,
         });
     }
-    
+
 
     handleClientSelection(client) {
         this.setState({ 
@@ -61,37 +61,43 @@ class ClientAuthentication extends Component {
 
     render() {
         return(
+            <div>
+            <Breadcrumb separator="/">
+            <Breadcrumb.Item><Link to="/Home">Home Page</Link></Breadcrumb.Item>
+            <Breadcrumb.Item>Check-in</Breadcrumb.Item>
+            </Breadcrumb>
             <div id="Centralized-In-Page">
-                <div id="Centralized-In-Block" className="Authenticatin-Div">
-                <center>
-                    {this.state.clients != null &&
-                        <h2>Enter Your Name:</h2>
-                    }
-                    <ClientListTypeahead 
-                        clientList={this.state.clients} 
-                        onSelect={this.handleClientSelection}
-                    />
-                    {
-                        this.state.hasSelected
-                            ?   <div id="Top-Padding">
-                                    <DOB defaultDate={"2000-01-01"} onValidDOB={this.handleClientDOB}/>
-                                </div>
-                            : null
-                    }
-                    {
-                        this.state.dobCompleted
-                            ?   <div id="Top-Padding">
-                                    <Button 
-                                        bsStyle="primary" 
-                                        disabled={!this.state.hasSelected} 
-                                        onClick={this.onSubmit}>
-                                        Submit
-                                    </Button>
-                                </div>
-                            : null
-                    }
-                </center>
+            <div id="Centralized-In-Block" className="Authenticatin-Div">
+            <center>
+            {this.state.clients != null &&
+                <h2>Enter Your Name:</h2>
+            }
+            <ClientListTypeahead 
+            clientList={this.state.clients} 
+            onSelect={this.handleClientSelection}
+            />
+            {
+                this.state.hasSelected
+                ?   <div id="Top-Padding">
+                <DOB defaultDate={"2000-01-01"} onValidDOB={this.handleClientDOB}/>
                 </div>
+                : null
+            }
+            {
+                this.state.dobCompleted
+                    ?   <div id="Top-Padding">
+                    <Button 
+                bsStyle="primary" 
+                disabled={!this.state.hasSelected} 
+                onClick={this.onSubmit}>
+                    Submit
+                    </Button>
+                    </div>
+                    : null
+            }
+            </center>
+            </div>
+            </div>
             </div>
         )
     }

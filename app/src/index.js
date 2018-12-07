@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
+import 'element-theme-default';
 
 // This demo uses a HashRouter instead of BrowserRouter
 // because there is no server to match URLs

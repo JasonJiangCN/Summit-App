@@ -22,6 +22,10 @@ import EmployeeAuthentication from './components/EmployeeAuthentication/Employee
 import UserManagement from './components/UserManagement/UserManagementContainer.jsx';
 import RefillPunchCards from './components/RefillPunchCards/RefillPunchCardsContainer.jsx'
 import ViewUserInfo from './components/ViewUserInfo/ViewUserInfoContainer.jsx'
+import { i18n } from 'element-react'
+import locale from 'element-react/src/locale/lang/en'
+
+i18n.use(locale);
 
 class App extends Component {
   render() {
